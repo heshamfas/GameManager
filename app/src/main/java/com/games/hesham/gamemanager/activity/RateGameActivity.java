@@ -1,28 +1,24 @@
-package com.games.hesham.gamemanager;
+package com.games.hesham.gamemanager.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import com.games.hesham.gamemanager.R;
 
-
-public class NavigationActivity extends Activity implements View.OnClickListener{
-    Button mNavGameListBtn, mNavGameRatingBtn;
+public class RateGameActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation);
-
+        setContentView(R.layout.activity_rate_game);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.navigation, menu);
+        getMenuInflater().inflate(R.menu.rate_game, menu);
         return true;
     }
 
@@ -36,17 +32,5 @@ public class NavigationActivity extends Activity implements View.OnClickListener
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.navi_game_listBtn:
-
-                break;
-            case R.id.navi_game_rateBtn:
-
-                break;
-        }
     }
 }
