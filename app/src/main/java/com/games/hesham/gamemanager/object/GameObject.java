@@ -37,4 +37,12 @@ public class GameObject {
     public void setImageSource(String imageSource) {
         this.imageSource = imageSource;
     }
+
+    public String getGame() {
+        return game;
+    }
+
+    public void setGame(String game) {
+        this.game = game;
+    }
 }
