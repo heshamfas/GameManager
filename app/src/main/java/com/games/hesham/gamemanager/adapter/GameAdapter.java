@@ -1,14 +1,19 @@
 package com.games.hesham.gamemanager.adapter;
 
 import android.content.Context;
+import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.android.volley.toolbox.ImageLoader;
+import com.games.hesham.gamemanager.GameManager;
 import com.games.hesham.gamemanager.R;
 import com.games.hesham.gamemanager.object.GameObject;
 
@@ -18,29 +23,39 @@ import java.util.ArrayList;
  * Created by Hesham on 8/9/2014.
  */
 
-public class GameAdapter extends BaseAdapter {
+public class GameAdapter extends BaseAdapter implements ListAdapter    {
     ArrayList<GameObject> gameList = null;
     Context context;
     LayoutInflater inflater;
+    ImageLoader imageLoader = GameManager.getImageLoader();
+
 
     public GameAdapter(Context c ,ArrayList<GameObject> gameList){
+        super();
         this.gameList = (ArrayList<GameObject>) gameList;
         this.context = c;
         inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
+
+
     @Override
     public int getCount() {
-        return 0;
+        return gameList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return gameList.get(position);
     }
 
     @Override
     public long getItemId(int position) {
         return 0;
+    }
+
+    @Override
+    public boolean hasStableIds() {
+        return false;
     }
 
     @Override
@@ -66,9 +81,35 @@ public class GameAdapter extends BaseAdapter {
         gameViewHolder.gameFinished.setChecked(currentGameObject.isFinished());
         gameViewHolder.gameRating.setRating(5);
         // gameViewHolder.gameImage.setImageBitmap();
+        imageLoader.get("http://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Wii_U_Console_and_Gamepad.png/120px-Wii_U_Console_and_Gamepad.png", ImageLoader.getImageListener(gameViewHolder.gameImage, R.drawable.ic_launcher, R.drawable.ic_launcher));
 
         //gameViewHolder.gameImage = currentGameObject.get
         return gameView;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return 0;
+    }
+
+    @Override
+    public int getViewTypeCount() {
+        return gameList.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public boolean areAllItemsEnabled() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled(int position) {
+        return true;
     }
 
     private static class GameViewHolder {

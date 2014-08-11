@@ -7,16 +7,16 @@ import java.util.ArrayList;
  */
 public class ObjectGenerator {
 
-    String[] gameConsole = {"Play Station", "XBox One", "PlayStation 4", "Atary", "Wii U"};
-    String[] gameName = {"Hesham", "Sally", "Envoy wasted my time", "Distruction of Envoy" };
-    String[] imageUrl = {
+   static final String[] gameConsole = {"Play Station", "XBox One", "PlayStation 4", "Atary", "Wii U"};
+    static final String[] gameName = {"Hesham", "Sally", "Envoy wasted my time", "Distruction of Envoy" };
+   static final String[] imageUrl = {
             "http://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Wii_U_Console_and_Gamepad.png/120px-Wii_U_Console_and_Gamepad.png",
             "http://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Wii_U_Console_and_Gamepad.png/120px-Wii_U_Console_and_Gamepad.png",
             "http://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Wii_U_Console_and_Gamepad.png/120px-Wii_U_Console_and_Gamepad.png",
             "http://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Wii_U_Console_and_Gamepad.png/120px-Wii_U_Console_and_Gamepad.png"
     };
 
-    public ArrayList<GameObject> generateGameObject(){
+    public static  ArrayList<GameObject> generateGameObject(){
         ArrayList<GameObject>  games = new ArrayList<GameObject>();
         for(int i = 0; i<gameName.length; i++){
             int math = 0 + (int)(Math.random()* gameConsole.length-1);

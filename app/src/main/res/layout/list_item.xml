@@ -11,36 +11,76 @@
         android:layout_height="100dp"
         android:scaleType="fitXY"
         />
-    <TextView
-        android:id= "@+id/console_nameTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/game_nameTV"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        >
-        <CheckBox
-            android:id="@+id/game_finishedCB"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/game_nameTV"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Game Name"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Finished"
-            android:enabled="false"
-            />
-        <RatingBar
-            android:layout_alignParentRight="true"
-            android:id="@+id/game_ratingRB"
-            android:visibility="visible"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp" />
-        </RelativeLayout>
+            android:layout_gravity="bottom|right"
+            >
+
+            <TextView
+                android:id= "@+id/console_nameTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello Games"
+                android:layout_gravity="left"
+                android:layout_marginLeft="5dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true" />
+
+            <CheckBox
+                android:id="@+id/game_finishedCB"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Finished"
+                android:enabled="false"
+                android:layout_alignParentBottom="true" />
+            <RatingBar
+                android:layout_alignParentRight="true"
+
+                android:id="@+id/game_ratingRB"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:minHeight="12dp"
+                android:maxHeight="12dp"
+                android:maxWidth="20dp"
+                style="?android:attr/ratingBarStyleSmall"
+                android:stepSize="1.0"
+
+                android:clickable="true"
+                android:numStars="5"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentBottom="true" />
+            </RelativeLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"></FrameLayout>
 
 
 </LinearLayout>

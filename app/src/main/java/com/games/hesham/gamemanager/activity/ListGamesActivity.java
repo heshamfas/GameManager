@@ -1,12 +1,14 @@
 package com.games.hesham.gamemanager.activity;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.games.hesham.gamemanager.R;
+import com.games.hesham.gamemanager.fragment.GameListFragment;
 
-public class ListGamesActivity extends Activity {
+public class ListGamesActivity extends Activity implements GameListFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +34,10 @@ public class ListGamesActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

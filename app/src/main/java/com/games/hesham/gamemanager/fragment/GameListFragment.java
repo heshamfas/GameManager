@@ -8,9 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.games.hesham.gamemanager.R;
+import com.games.hesham.gamemanager.adapter.GameAdapter;
+import com.games.hesham.gamemanager.object.GameObject;
+import com.games.hesham.gamemanager.object.ObjectGenerator;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,16 +83,18 @@ public class GameListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-      /*  Adapter adapter = new Gam*/
+        ArrayList<GameObject> games = ObjectGenerator.generateGameObject();
+        ListAdapter adapter = new GameAdapter(getActivity(), games);
+        gameList.setAdapter(adapter);
 
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+/*    public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
-    }
+    }*/
 
     @Override
     public void onAttach(Activity activity) {
@@ -118,6 +126,7 @@ public class GameListFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
+
     }
 
 }
