@@ -1,6 +1,7 @@
 package com.games.hesham.gamemanager.fragment;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -11,12 +12,16 @@ import android.widget.Adapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import com.games.hesham.gamemanager.ActivityType;
 import com.games.hesham.gamemanager.R;
+import com.games.hesham.gamemanager.activity.ListGamesActivity;
 import com.games.hesham.gamemanager.adapter.GameAdapter;
 import com.games.hesham.gamemanager.object.GameObject;
 import com.games.hesham.gamemanager.object.ObjectGenerator;
 
 import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,6 +38,7 @@ public class GameListFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private ListView gameList;
+    private ActivityType activityType;
 
 
     // TODO: Rename and change types of parameters
@@ -65,7 +71,9 @@ public class GameListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
+
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
@@ -84,7 +92,7 @@ public class GameListFragment extends Fragment {
     public void onStart() {
         super.onStart();
         ArrayList<GameObject> games = ObjectGenerator.generateGameObject();
-        ListAdapter adapter = new GameAdapter(getActivity(), games);
+        ListAdapter adapter = new GameAdapter(getActivity(), games, activityType);
         gameList.setAdapter(adapter);
 
     }
@@ -100,7 +108,13 @@ public class GameListFragment extends Fragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
+            Activity a = getActivity();
             mListener = (OnFragmentInteractionListener) activity;
+            if(a instanceof ListGamesActivity) {
+                activityType = ActivityType.LIST;
+            }else {
+                activityType = ActivityType.RATING;
+            }
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");

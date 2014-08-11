@@ -13,6 +13,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
+import com.games.hesham.gamemanager.ActivityType;
 import com.games.hesham.gamemanager.GameManager;
 import com.games.hesham.gamemanager.R;
 import com.games.hesham.gamemanager.object.GameObject;
@@ -26,14 +27,16 @@ import java.util.ArrayList;
 public class GameAdapter extends BaseAdapter implements ListAdapter    {
     ArrayList<GameObject> gameList = null;
     Context context;
+    ActivityType activityType;
     LayoutInflater inflater;
     ImageLoader imageLoader = GameManager.getImageLoader();
 
 
-    public GameAdapter(Context c ,ArrayList<GameObject> gameList){
+    public GameAdapter(Context c ,ArrayList<GameObject> gameList, ActivityType activityType){
         super();
         this.gameList = (ArrayList<GameObject>) gameList;
         this.context = c;
+        this.activityType = activityType;
         inflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -80,9 +83,14 @@ public class GameAdapter extends BaseAdapter implements ListAdapter    {
         gameViewHolder.gameNameTV.setText(currentGameObject.getGame());
         gameViewHolder.gameFinished.setChecked(currentGameObject.isFinished());
         gameViewHolder.gameRating.setRating(5);
-        // gameViewHolder.gameImage.setImageBitmap();
-        imageLoader.get("http://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Wii_U_Console_and_Gamepad.png/120px-Wii_U_Console_and_Gamepad.png", ImageLoader.getImageListener(gameViewHolder.gameImage, R.drawable.ic_launcher, R.drawable.ic_launcher));
-
+        if(activityType == ActivityType.LIST){
+            gameViewHolder.gameFinished.setVisibility(View.VISIBLE);
+        }else{
+            gameViewHolder.gameRating.setVisibility(View.VISIBLE);
+        }
+        String imageUrl = gameList.get(position).getImageSource();
+            // gameViewHolder.gameImage.setImageBitmap();
+        imageLoader.get(imageUrl, ImageLoader.getImageListener(gameViewHolder.gameImage, R.drawable.ic_launcher, R.drawable.ic_launcher));
         //gameViewHolder.gameImage = currentGameObject.get
         return gameView;
     }

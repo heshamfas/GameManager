@@ -17,7 +17,7 @@ public class GameManager extends Application {
     public  static ImageLoader imageLoader;
     public void onCreate() {
         requestQueue = Volley.newRequestQueue(this);
-        imageLoader = new ImageLoader(requestQueue, new BitmapCache(5));
+        imageLoader = new ImageLoader(requestQueue, new BitmapCache(20));
     }
     public static RequestQueue getRequestQueue(){
         return requestQueue;

@@ -8,12 +8,26 @@ import java.util.ArrayList;
 public class ObjectGenerator {
 
    static final String[] gameConsole = {"Play Station", "XBox One", "PlayStation 4", "Atary", "Wii U"};
-    static final String[] gameName = {"Hesham", "Sally", "Envoy wasted my time", "Distruction of Envoy" };
+    static final String[] gameName = {
+            "Metal Gear Rising Revengeance",
+            "Dead Space 3",
+            "Aliens: Colonial Marines",
+            "Crysis 3" ,
+            "Rayman Legends",
+            "One Piece: Pirate – Warriors launch trailer",
+            "Transformers Prime Wii U Rivalries Trailer",
+            "Assassin’s Creed III Connor Story Trailer"
+    };
    static final String[] imageUrl = {
-            "http://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Wii_U_Console_and_Gamepad.png/120px-Wii_U_Console_and_Gamepad.png",
-            "http://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Wii_U_Console_and_Gamepad.png/120px-Wii_U_Console_and_Gamepad.png",
-            "http://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Wii_U_Console_and_Gamepad.png/120px-Wii_U_Console_and_Gamepad.png",
-            "http://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Wii_U_Console_and_Gamepad.png/120px-Wii_U_Console_and_Gamepad.png"
+           "http://publisher.dailymotion.com/watchlist/wp-content/uploads/2013/05/the-last-of-us-video-game.jpg",
+            "http://publisher.dailymotion.com/watchlist/wp-content/uploads/2013/04/Injustice-Gods-Among-Us-video-game.jpg",
+            "http://publisher.dailymotion.com/watchlist/wp-content/uploads/2012/10/halo-4.jpg",
+            "http://publisher.dailymotion.com/watchlist/wp-content/uploads/2012/09/World-Of-Warcraft-Mists-Of-Pandaria.jpg",
+           "http://publisher.dailymotion.com/watchlist/wp-content/uploads/2012/10/Featured_Halo4.jpg",
+           "http://publisher.dailymotion.com/watchlist/wp-content/uploads/2012/08/cs1.jpg",
+           "http://publisher.dailymotion.com/watchlist/wp-content/uploads/2012/07/feature-sleeping-dogs-artwork-600x300.jpg",
+           "http://publisher.dailymotion.com/watchlist/wp-content/uploads/2012/05/heroesofruin.jpg"
+
     };
 
     public static  ArrayList<GameObject> generateGameObject(){

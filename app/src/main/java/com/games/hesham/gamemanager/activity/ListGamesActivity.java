@@ -5,11 +5,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.games.hesham.gamemanager.ActivityType;
 import com.games.hesham.gamemanager.R;
 import com.games.hesham.gamemanager.fragment.GameListFragment;
 
 public class ListGamesActivity extends Activity implements GameListFragment.OnFragmentInteractionListener {
-
+    public static ActivityType activityType = ActivityType.LIST;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
