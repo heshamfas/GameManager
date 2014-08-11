@@ -1,20 +1,22 @@
 package com.games.hesham.gamemanager;
 
-import android.app.Application;
-import android.graphics.Bitmap;
-import android.util.LruCache;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 import com.games.hesham.gamemanager.object.GameObject;
 import com.games.hesham.gamemanager.object.ObjectGenerator;
 
+import android.app.Application;
+import android.graphics.Bitmap;
+import android.util.LruCache;
+
 import java.util.ArrayList;
 
 /**
  * Created by Hesham on 8/10/2014.
  */
+
+
 public class GameManager extends Application {
 
     private static ArrayList<GameObject> gameObjects = null;
