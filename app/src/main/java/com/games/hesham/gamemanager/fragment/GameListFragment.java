@@ -13,6 +13,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.games.hesham.gamemanager.ActivityType;
+import com.games.hesham.gamemanager.GameManager;
 import com.games.hesham.gamemanager.R;
 import com.games.hesham.gamemanager.activity.ListGamesActivity;
 import com.games.hesham.gamemanager.adapter.GameAdapter;
@@ -91,7 +92,7 @@ public class GameListFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        ArrayList<GameObject> games = ObjectGenerator.generateGameObject();
+        ArrayList<GameObject> games = GameManager.getGameObjects();
         ListAdapter adapter = new GameAdapter(getActivity(), games, activityType);
         gameList.setAdapter(adapter);
 
