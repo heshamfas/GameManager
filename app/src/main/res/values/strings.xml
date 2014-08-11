@@ -4,6 +4,8 @@
     <string name="app_name">GameManager</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_add">add</string>
+    <string name="action_back">back</string>
     <string name="title_activity_game_list">Game List</string>
     <string name="hello_blank_fragment">fragment</string>
     <string name="title_activity_rate_game">Game Rate</string>

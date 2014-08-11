@@ -1,5 +1,7 @@
 package com.games.hesham.gamemanager.object;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 /**
@@ -33,11 +35,15 @@ public class ObjectGenerator {
     public static  ArrayList<GameObject> generateGameObject(){
         ArrayList<GameObject>  games = new ArrayList<GameObject>();
         for(int i = 0; i<gameName.length; i++){
-            int math = 0 + (int)(Math.random()* gameConsole.length-1);
+            int math = (int)(Math.random()* gameConsole.length-1);
             String consoleName = gameConsole[math];
             String game = gameName[i];
             String imageURL = imageUrl[i];
-            GameObject gameObj = new GameObject(game,consoleName,imageURL,false);
+            double finished = ((Math.random()));
+            long lFinished = Math.round(finished);
+            boolean gameFinished  = (int)lFinished == 0?false:true;
+            Log.d(ObjectGenerator.class.getSimpleName() ," GameFinished is :"+ gameFinished);
+            GameObject gameObj = new GameObject(game,consoleName,imageURL,gameFinished);
             games.add(gameObj);
         }
         return games;

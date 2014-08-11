@@ -82,7 +82,8 @@ public class GameAdapter extends BaseAdapter implements ListAdapter    {
         gameViewHolder.consoleNameTV.setText(currentGameObject.getConsole());
         gameViewHolder.gameNameTV.setText(currentGameObject.getGame());
         gameViewHolder.gameFinished.setChecked(currentGameObject.isFinished());
-        gameViewHolder.gameRating.setRating(5);
+        gameViewHolder.gameRating.setEnabled(true);
+        gameViewHolder.gameRating.setRating(1 + (int)Math.random()*5);
         if(activityType == ActivityType.LIST){
             gameViewHolder.gameFinished.setVisibility(View.VISIBLE);
         }else{

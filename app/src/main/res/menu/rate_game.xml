@@ -1,8 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.games.hesham.gamemanager.activity.RateGameActivity" >
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+    <item android:id="@+id/rate_action_back"
+        android:icon="@drawable/back"
+        android:title="@string/action_back"
         android:orderInCategory="100"
         android:showAsAction="always" />
 </menu>
