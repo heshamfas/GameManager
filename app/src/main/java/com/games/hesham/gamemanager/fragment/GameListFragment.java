@@ -1,28 +1,28 @@
 package com.games.hesham.gamemanager.fragment;
 
-import android.app.Activity;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Bundle;
-import android.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-
+import com.games.hesham.gamemanager.ActionItemClickedListener;
 import com.games.hesham.gamemanager.ActivityType;
 import com.games.hesham.gamemanager.GameManager;
 import com.games.hesham.gamemanager.R;
 import com.games.hesham.gamemanager.activity.ListGamesActivity;
 import com.games.hesham.gamemanager.adapter.GameAdapter;
 import com.games.hesham.gamemanager.object.GameObject;
-import com.games.hesham.gamemanager.object.ObjectGenerator;
+
+import android.app.Activity;
+import android.app.Fragment;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,13 +33,20 @@ import java.util.HashMap;
  * create an instance of this fragment.
  *
  */
-public class GameListFragment extends Fragment {
+public class GameListFragment extends Fragment implements ActionItemClickedListener ,
+        View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private ListView gameList;
     private ActivityType activityType;
+    private EditText gameNameET;
+    private EditText consoleET;
+    private EditText imageUrlET;
+    private Button addBtn;
+    private Button cancelBtn;
+    private LinearLayout addLayout;
 
 
     // TODO: Rename and change types of parameters
@@ -85,7 +92,13 @@ public class GameListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_game_list, container, false);
-            gameList = (ListView)view.findViewById(R.id.game_listLV);
+        gameList = (ListView)view.findViewById(R.id.game_listLV);
+        gameNameET = (EditText)view.findViewById(R.id.list_add_game_nameET);
+        consoleET = (EditText)view.findViewById(R.id.list_add_console_nameET);
+         imageUrlET = (EditText)view.findViewById(R.id.game_imageET);
+        addBtn = (Button)view.findViewById(R.id.add_btn);
+        cancelBtn= (Button)view.findViewById(R.id.cancel_btn);
+        LinearLayout addLayout= (LinearLayout)view.findViewById(R.id.addLL);
         return view;
     }
 
@@ -113,6 +126,7 @@ public class GameListFragment extends Fragment {
             mListener = (OnFragmentInteractionListener) activity;
             if(a instanceof ListGamesActivity) {
                 activityType = ActivityType.LIST;
+                ListGamesActivity.addActionItemClickListener(this);
             }else {
                 activityType = ActivityType.RATING;
             }
@@ -126,6 +140,35 @@ public class GameListFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+
+
+    @Override
+    public void onActionItemClicked(MenuItem item) {
+        if(item.getItemId() ==R.id.action_add){
+            // do stuff for adding the item
+            showAddItemLayout();
+
+        }
+
+    }
+
+    private void showAddItemLayout() {
+        gameList.setVisibility(View.GONE);
+        addLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.add_btn:
+
+                break;
+            case R.id.cancel_btn:
+                break;
+
+        }
     }
 
     /**

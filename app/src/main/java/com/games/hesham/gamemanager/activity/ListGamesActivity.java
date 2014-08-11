@@ -1,24 +1,26 @@
 package com.games.hesham.gamemanager.activity;
 
+import com.games.hesham.gamemanager.ActionItemClickedListener;
+import com.games.hesham.gamemanager.ActivityType;
+import com.games.hesham.gamemanager.R;
+
 import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.games.hesham.gamemanager.ActivityType;
-import com.games.hesham.gamemanager.R;
-import com.games.hesham.gamemanager.fragment.GameListFragment;
-
-public class ListGamesActivity extends Activity implements GameListFragment.OnFragmentInteractionListener {
+public class ListGamesActivity extends Activity {
     public static ActivityType activityType = ActivityType.LIST;
+    public static ActionItemClickedListener menuListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_list);
     }
 
-
+public static void addActionItemClickListener(ActionItemClickedListener listener){
+    menuListener = listener;
+}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -33,6 +35,7 @@ public class ListGamesActivity extends Activity implements GameListFragment.OnFr
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_add) {
+            menuListener.onActionItemClicked(item);
             return true;
         }else if(id == R.id.action_back){
             this.finish();
@@ -40,8 +43,7 @@ public class ListGamesActivity extends Activity implements GameListFragment.OnFr
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
 
-    }
+
+
 }

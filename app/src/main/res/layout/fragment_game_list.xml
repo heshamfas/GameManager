@@ -5,15 +5,56 @@
     tools:context="com.games.hesham.gamemanager.fragment.GameListFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/game_listLV"
         ></ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/addLL"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/list_add_game_nameET"
+            android:layout_width="200dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:hint="Game Name"
+            />
+
+        <EditText
+            android:id="@+id/list_add_console_nameET"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:hint="console"
+
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="game image url"
+            android:id="@+id/game_imageET"
+            />
+
+        <Button
+            android:id="@+id/add_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            />
+        <Button
+            android:id="@+id/cancel_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+
+            />
+
+        </LinearLayout>
 
 </FrameLayout>
