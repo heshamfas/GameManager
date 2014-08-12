@@ -10,9 +10,8 @@ import android.os.Bundle;
  * Created by Hesham on 8/11/2014.
  */
 public class GeneralDialogFragment extends DialogFragment {
-    Context mContext;
+
     public GeneralDialogFragment() {
-        mContext = getActivity();
     }
 
 

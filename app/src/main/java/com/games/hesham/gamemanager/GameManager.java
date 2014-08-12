@@ -23,6 +23,7 @@ public class GameManager extends Application {
 
     public  static RequestQueue requestQueue;
     public  static ImageLoader imageLoader;
+
     public void onCreate() {
         gameObjects = ObjectGenerator.generateGameObject();
         requestQueue = Volley.newRequestQueue(this);

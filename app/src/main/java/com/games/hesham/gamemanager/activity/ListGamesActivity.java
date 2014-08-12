@@ -36,7 +36,7 @@ public static void addActionItemClickListener(ActionItemClickedListener listener
         int id = item.getItemId();
         if (id == R.id.action_add) {
             menuListener.onActionItemClicked(item);
-            return true;
+
         }else if(id == R.id.action_back){
             this.finish();
         }

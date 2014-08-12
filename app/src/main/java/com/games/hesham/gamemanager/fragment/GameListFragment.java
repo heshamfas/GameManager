@@ -9,9 +9,12 @@ import com.games.hesham.gamemanager.adapter.GameAdapter;
 import com.games.hesham.gamemanager.object.GameObject;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DialogFragment;
 import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +40,7 @@ public class GameListFragment extends Fragment implements ActionItemClickedListe
         View.OnClickListener{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     private ListView gameList;
@@ -47,6 +51,7 @@ public class GameListFragment extends Fragment implements ActionItemClickedListe
     private Button addBtn;
     private Button cancelBtn;
     private LinearLayout addLayout;
+    private GameAdapter adapter;
 
 
     // TODO: Rename and change types of parameters
@@ -92,12 +97,15 @@ public class GameListFragment extends Fragment implements ActionItemClickedListe
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =inflater.inflate(R.layout.fragment_game_list, container, false);
+        addLayout = (LinearLayout)view.findViewById(R.id.addLL);
         gameList = (ListView)view.findViewById(R.id.game_listLV);
         gameNameET = (EditText)view.findViewById(R.id.list_add_game_nameET);
         consoleET = (EditText)view.findViewById(R.id.list_add_console_nameET);
          imageUrlET = (EditText)view.findViewById(R.id.game_imageET);
         addBtn = (Button)view.findViewById(R.id.add_btn);
+        addBtn.setOnClickListener(this);
         cancelBtn= (Button)view.findViewById(R.id.cancel_btn);
+        cancelBtn.setOnClickListener(this);
         LinearLayout addLayout= (LinearLayout)view.findViewById(R.id.addLL);
         return view;
     }
@@ -105,9 +113,7 @@ public class GameListFragment extends Fragment implements ActionItemClickedListe
     @Override
     public void onStart() {
         super.onStart();
-        ArrayList<GameObject> games = GameManager.getGameObjects();
-        ListAdapter adapter = new GameAdapter(getActivity(), games, activityType);
-        gameList.setAdapter(adapter);
+        resetGameList();
 
     }
 
@@ -123,7 +129,7 @@ public class GameListFragment extends Fragment implements ActionItemClickedListe
         super.onAttach(activity);
         try {
             Activity a = getActivity();
-            mListener = (OnFragmentInteractionListener) activity;
+            //mListener = (OnFragmentInteractionListener) activity;
             if(a instanceof ListGamesActivity) {
                 activityType = ActivityType.LIST;
                 ListGamesActivity.addActionItemClickListener(this);
@@ -151,7 +157,6 @@ public class GameListFragment extends Fragment implements ActionItemClickedListe
             showAddItemLayout();
 
         }
-
     }
 
     private void showAddItemLayout() {
@@ -163,12 +168,41 @@ public class GameListFragment extends Fragment implements ActionItemClickedListe
     public void onClick(View v) {
         switch(v.getId()){
             case R.id.add_btn:
-
+                GeneralDialogFragment generalDialogFragment = new GeneralDialogFragment();
+                    Bundle bundle = new Bundle();
+                if(TextUtils.isEmpty(gameNameET.getText().toString())){
+                     showGeneralDialog("Error", "Missing Game Name");
+                }else if(TextUtils.isEmpty(consoleET.getText().toString())) {
+                    showGeneralDialog("Error", "Missing Console");
+                }else if(TextUtils.isEmpty(imageUrlET.getText().toString())){
+                showGeneralDialog("Error", "Missing Image Url");
+            }else {
+                    GameObject gameObject = new GameObject(gameNameET.getText().toString(),consoleET.getText().toString(),imageUrlET.getText().toString(), false);
+                    GameManager.getGameObjects().add(gameObject);
+                    gameList.setVisibility(View.VISIBLE);
+                    resetGameList();
+                    addLayout.setVisibility(View.GONE);
+                }
                 break;
             case R.id.cancel_btn:
+                gameList.setVisibility(View.VISIBLE);
+                addLayout.setVisibility(View.GONE);
                 break;
-
         }
+    }
+private void resetGameList(){
+    adapter = new GameAdapter(getActivity(),GameManager.getGameObjects(), activityType);
+    adapter.notifyDataSetChanged();
+    gameList.setAdapter(adapter);
+}
+    private void showGeneralDialog(String title, String message){
+        GeneralDialogFragment generalDialogFragment = new GeneralDialogFragment();
+        Bundle bundle = new Bundle();
+            bundle.putString("title", title);
+            bundle.putString("message", message);
+            generalDialogFragment.setArguments(bundle);
+            generalDialogFragment.show(getFragmentManager(), "");
+
     }
 
     /**
